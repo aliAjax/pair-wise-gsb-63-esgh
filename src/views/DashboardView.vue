@@ -27,11 +27,26 @@ const columns = [
   { title: '检验编号', key: 'id', width: 145 },
   { title: '设备', key: 'deviceName', width: 130, render: (row: any) => `${row.deviceName} / ${row.deviceCode}` },
   { title: '区域', key: 'area', width: 90 },
-  { title: '状态', key: 'status', width: 90, render: (row: any) => h(NTag, { type: row.stopped ? 'error' : row.status === '已关闭' ? 'success' : 'warning', bordered: false }, { default: () => row.status }) },
-  { title: '风险', key: 'risk', width: 80 },
-  { title: '责任人', key: 'assignedTo', width: 105 },
-  { title: '截止', key: 'dueDate', width: 110 },
-  { title: '版本', key: 'version', width: 70, render: (row: any) => `V${row.version}` },
+  { title: '状态', key: 'status', width: 90, render: (row: any) => h(NTag, { type: row.stopped ? 'error' : row.status === '已关闭' ? 'success' : row.status === '待重排' ? 'warning' : 'default', bordered: false }, { default: () => row.status }) },
+  { title: '风险', key: 'risk', width: 70 },
+  {
+    title: '班组 / 时段 / 资质', key: 'schedule', width: 260,
+    render: (row: any) => h('div', { class: 'cell-schedule' }, [
+      h('strong', row.assignedTo),
+      h('small', row.slotStart ? `${row.slotStart.slice(5, 16).replace('T', ' ')} ~ ${row.slotEnd?.slice(11, 16)}` : '未排时段'),
+      h('small', (row.requiredQuals ?? []).join('、') || '无资质要求')
+    ])
+  },
+  {
+    title: '提示', key: 'flags', width: 120,
+    render: (row: any) => {
+      const flags: string[] = []
+      if (store.scheduleConflicts.some((c) => c.record.id === row.id || c.other.id === row.id)) flags.push('时段冲突')
+      if (row.conflict) flags.push('双版本')
+      if (row.status === '待重排') flags.push('待重排')
+      return flags.length ? h(NTag, { type: 'error', size: 'small', bordered: false }, { default: () => flags.join('·') }) : '—'
+    }
+  },
   { title: '', key: 'actions', width: 80, render: (row: any) => h(NButton, { size: 'small', tertiary: true, onClick: () => router.push(`/records/${row.id}`) }, { default: () => '打开' }) }
 ]
 
@@ -51,9 +66,9 @@ function createRecord() {
   <section class="content">
     <div class="metric-strip">
       <article><span>今日检验任务</span><strong>{{ store.stats.total }}</strong><small>含复用演示记录</small></article>
-      <article><span>停用设备</span><strong>{{ store.stats.blocked }}</strong><small>需优先核实隔离状态</small></article>
-      <article><span>临近超期</span><strong>{{ store.stats.overdue }}</strong><small>按整改截止日计算</small></article>
-      <article><span>已闭环</span><strong>{{ store.stats.closed }}</strong><small>异常项已复核完成</small></article>
+      <article><span>停用设备</span><strong>{{ store.stats.blocked }}</strong><small>未关闭缺陷清零前禁止开放</small></article>
+      <article><span>待重排 / 冲突</span><strong>{{ store.stats.waitingReschedule }} / {{ store.stats.conflicts }}</strong><small>被紧急顶替让出时段的工单</small></article>
+      <article><span>已闭环</span><strong>{{ store.stats.closed }}</strong><small>异常项复测合格后恢复开放</small></article>
     </div>
 
     <div class="toolbar">
