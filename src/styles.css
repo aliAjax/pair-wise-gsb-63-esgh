@@ -99,3 +99,88 @@ h3 { font-size: 15px; margin: 0 0 10px; }
 .audit-card p { margin: 8px 0; color: #5e6c69; font-size: 12px; }
 .audit-card small { color: #8b9794; font-size: 11px; }
 .empty-state { padding: 80px; text-align: center; color: #71807d; }
+
+/* ---------- 派工与缺陷看板扩展 ---------- */
+.kanban-5 { grid-template-columns: repeat(5, 1fr); }
+.kanban-column .lane-reschedule { color: #b46a12; font-weight: 700; }
+.card-schedule { display: flex; flex-direction: column; gap: 3px; margin-top: 10px; }
+.card-schedule span { font-size: 12px; font-weight: 600; color: #214d52; }
+.card-schedule small { color: #7b8986; font-size: 10px; }
+.card-quals { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 7px; }
+.conflict-dot { display: inline-block; width: 7px; height: 7px; margin-left: 5px; background: #d04a3e; border-radius: 50%; }
+.board-tools { display: flex; gap: 8px; }
+.board-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 14px; margin-top: 16px; align-items: start; }
+.section-hint { color: #7b8986; font-size: 11px; margin: 0 0 12px; line-height: 1.7; }
+.occupancy-list { display: grid; gap: 9px; }
+.occupancy-row { display: grid; grid-template-columns: 178px 1fr; gap: 12px; border-top: 1px dashed #dde4e1; padding-top: 9px; }
+.occ-crew { display: grid; gap: 4px; align-content: start; }
+.occ-crew strong { font-size: 13px; }
+.occ-crew small { color: #84928f; font-size: 10px; }
+.occ-jobs { display: flex; flex-wrap: wrap; gap: 6px; align-content: flex-start; }
+.occ-idle { color: #94a29f; font-size: 11px; }
+.occ-job { font-size: 11px; background: #eef4f2; border-left: 3px solid #c7902d; padding: 5px 8px; cursor: pointer; display: grid; gap: 2px; }
+.occ-job em { font-style: normal; color: #174c52; font-weight: 600; }
+.offline-actions { display: flex; gap: 8px; margin-bottom: 12px; }
+.offline-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 7px; max-height: 230px; overflow: auto; }
+.offline-list li { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 11px; background: #f5f8f6; padding: 7px 9px; border-radius: 3px; }
+.op-client { font-weight: 600; color: #214d52; }
+.op-body { flex: 1; color: #4e5e5b; }
+.offline-list small { color: #84928f; }
+.offline-empty { color: #94a29f; text-align: center; padding: 14px; }
+.link-btn { border: 0; background: none; color: #1c656c; text-decoration: underline; cursor: pointer; font-size: 11px; padding: 0; }
+
+/* ---------- 派工表单 ---------- */
+.schedule-form { display: grid; gap: 12px; }
+.sf-row { display: grid; grid-template-columns: 1fr 1.4fr; gap: 14px; }
+.sf-row label { font-size: 12px; color: #5d6c69; display: grid; gap: 6px; }
+.sf-row .sf-presets { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 11px; color: #7b8986; }
+.sf-row .sf-presets button { border: 1px solid #ccd6d2; background: #fff; border-radius: 3px; padding: 4px 8px; cursor: pointer; font-size: 11px; }
+.sf-quals { display: flex; flex-wrap: wrap; gap: 2px 12px; }
+.sf-check { display: flex; flex-wrap: wrap; gap: 8px; }
+.sf-actions { display: flex; align-items: center; gap: 12px; }
+.sf-hint { color: #a0651a; font-size: 11px; }
+
+/* ---------- 详情页扩展 ---------- */
+.metric-strip-5 { grid-template-columns: repeat(5, 1fr); }
+.toolbar-wide { grid-template-columns: minmax(240px, 1fr) 130px 120px auto auto; }
+.gate-banner { border-left: 3px solid #c3483f; background: #fdecea; padding: 12px 14px; border-radius: 3px; margin-bottom: 16px; }
+.gate-banner strong { font-size: 12px; color: #a6362c; }
+.gate-banner p { margin: 5px 0 0; font-size: 12px; color: #7c4a44; line-height: 1.7; }
+.schedule-card { background: white; border: 1px solid #dbe2df; border-radius: 5px; padding: 18px 20px; margin-bottom: 16px; }
+.schedule-card h3 { margin-bottom: 14px; }
+.form-band-static { grid-template-columns: 1fr 150px 130px 150px; }
+.conflict-version-panel { margin-top: 18px; background: white; border: 1px solid #e3c9c5; border-radius: 5px; padding: 18px 20px; }
+.conflict-version { border: 1px solid #ead8d5; border-radius: 4px; padding: 12px 14px; margin-top: 10px; }
+.conflict-version > header { display: flex; justify-content: space-between; align-items: center; }
+.conflict-version > header div { display: flex; gap: 8px; align-items: center; }
+.conflict-version > header small { color: #8b9794; font-size: 11px; }
+.version-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 10px 0; }
+.version-col { padding: 10px 12px; border-radius: 3px; font-size: 12px; }
+.version-col span { display: block; font-weight: 700; font-size: 11px; margin-bottom: 6px; }
+.version-col p { margin: 3px 0; color: #56645f; line-height: 1.6; }
+.version-field { background: #eef5fa; border-left: 3px solid #3e7ea8; }
+.version-master { background: #f5f3ec; border-left: 3px solid #c7902d; }
+.version-actions { display: flex; gap: 8px; }
+.version-resolved { color: #7c8a87; font-size: 11px; margin: 6px 0 0; }
+.offline-detail-panel { margin-top: 18px; background: white; border: 1px solid #dbe2df; border-radius: 5px; padding: 18px 20px; }
+.offline-detail-form { display: grid; grid-template-columns: 200px 1fr auto auto; gap: 10px; align-items: end; margin-bottom: 10px; }
+.offline-detail-form label { font-size: 12px; color: #5d6c69; display: grid; gap: 5px; }
+.offline-record-ops { list-style: none; padding: 0; margin: 0 0 8px; display: grid; gap: 6px; }
+.offline-record-ops li { display: flex; align-items: center; gap: 9px; font-size: 11px; background: #f5f8f6; padding: 6px 9px; border-radius: 3px; }
+.offline-record-ops small { color: #84928f; }
+.offline-tip { color: #8b9794; font-size: 11px; margin: 0; }
+.revision-panel { margin-top: 18px; background: white; border: 1px solid #dbe2df; border-radius: 5px; padding: 18px 20px; }
+.revision-list { display: grid; gap: 0; }
+.revision-item { display: grid; grid-template-columns: 52px 1fr; gap: 12px; position: relative; padding-bottom: 16px; }
+.revision-item:not(:last-child)::before { content: ""; position: absolute; left: 25px; top: 26px; bottom: 0; width: 1px; background: #d7e0dc; }
+.rev-index { width: 40px; height: 40px; border-radius: 50%; background: #17494f; color: #fff; display: grid; place-items: center; font-size: 11px; font-weight: 700; z-index: 1; }
+.rev-body header { display: flex; gap: 8px; align-items: center; }
+.rev-body header strong { font-size: 13px; }
+.rev-body p { margin: 5px 0; font-size: 12px; color: #4e5e5b; line-height: 1.7; }
+.rev-body small { color: #8b9794; font-size: 11px; }
+.rule-warn { border-left-color: #c3483f; background: #fdecea; }
+.rule-warn p { color: #8a4d45; }
+
+/* ---------- 审计筛选 ---------- */
+.audit-filters { display: flex; gap: 8px; }
+.audit-tags { display: inline-flex; gap: 5px; }
